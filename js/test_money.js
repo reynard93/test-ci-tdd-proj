@@ -24,21 +24,20 @@ assert.deepStrictEqual(tenEuros.times(2).currency, "EUR");
 
 let originalMoney = new Money(4002, "KRW");
 let expectedMoneyAfterDivision = new Money(1000.5, "KRW");
-  assert.deepStrictEqual(originalMoney.divide(4), expectedMoneyAfterDivision);
+assert.deepStrictEqual(originalMoney.divide(4), expectedMoneyAfterDivision);
 
 class Portfolio {
-  #moneys = []
+  #moneys = [];
 
   add(...moneys) {
-    this.#moneys = this.#moneys.concat(moneys)
+    this.#moneys = this.#moneys.concat(moneys);
   }
   evaluate(currency) {
-    let total = this.#moneys.reduce((sum, {amount}) => sum + amount, 0);
+    let total = this.#moneys.reduce((sum, { amount }) => sum + amount, 0);
     return new Money(total, currency);
   }
 }
-let fifteenDollars = new Money(15, "USD")
+let fifteenDollars = new Money(15, "USD");
 let portfolio = new Portfolio();
-portfolio.add(fiveDollars, fiveDollars.times(2))
+portfolio.add(fiveDollars, fiveDollars.times(2));
 assert.deepStrictEqual(portfolio.evaluate("USD"), fifteenDollars);
-
